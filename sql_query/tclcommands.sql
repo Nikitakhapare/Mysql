@@ -1,0 +1,18 @@
+use student;
+show tables;
+truncate table studentinfo;
+select *from studentinfo;
+start transaction;
+truncate table studentinfo;
+insert into studentinfo(fname,lname,age,city)value("adi","lande",33,"nagpur");
+insert into studentinfo(fname,lname,age,city)value("niki","khapare",33,"amravati");
+commit;
+rollback;
+start transaction;
+update  studentinfo set fname = "pari" where stuid = 2;
+savepoint upd;
+delete from studentinfo where fname = "pari";
+savepoint del;
+insert into studentinfo(fname,lname,age,city)value("komal","mane",22,"morshi");
+savepoint ins;
+rollback to upd;
